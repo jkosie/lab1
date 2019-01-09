@@ -12,9 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Load Data
 ```{r}
 library(rio)
-
 tweets <- import("data/rstats_tweets.rds")
-
 ```
 
 ##Commit 2
@@ -29,26 +27,23 @@ countscreen <- count(tweets, vars = screen_name)
 countscreen <- arrange(countscreen, desc(n))
 countscreen25 <- dplyr::slice(countscreen, 1:25)
 
-graph1 <- ggplot(countscreen25, aes(x = fct_reorder(vars, n, desc = FALSE), y = n)) +
+(graph1 <- ggplot(countscreen25, aes(x = fct_reorder(vars, n, desc = FALSE), y = n)) +
   geom_bar(stat = "identity") +
   coord_flip() +
-  xlab("screen_name")
+  xlab("screen_name"))
 ```
 
 ## Commit 3
 ```{r pretty_graph, fig.height=10 , fig.width=10}
-pretty_graph <- ggplot(countscreen25, aes(x = fct_reorder(vars, n, desc = FALSE), y = n)) +
-  geom_bar(stat = "identity", fill="cornflowerblue") +
+(pretty_graph <- ggplot(countscreen25, aes(x = fct_reorder(vars, n, desc = FALSE), y = n)) +
+  geom_bar(stat = "identity", fill="cornflowerblue", alpha = 0.6) +
   coord_flip() +
   xlab("Twitter Screen Name")+
   ylab("Count")+
  theme_minimal(base_size=15)+
-   ggttile("Most prolific #rstats tweeters")+
-  
-
-
+  ggtitle("Most prolific #rstats tweeters")+
+  labs(subtitle = "Top 25 screen names displayed"))
 ```
-
 
 
 ## Commit 4
@@ -69,6 +64,7 @@ ggplot(month_count, aes(x = month, y = n)) +
   geom_smooth(method = "loess", se = T) +
   geom_line()
 ```
+
 ## Commit 5
 ```{r, fig.width = 10, fig.height = 10}
 # Pretty plot
