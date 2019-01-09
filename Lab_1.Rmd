@@ -17,6 +17,40 @@ tweets <- import("data/rstats_tweets.rds")
 
 ```
 
+##Commit 2
+```{r commit2}
+#install.packages("ggplot2")
+head(tweets)
+library(utf8)
+library(dplyr)
+library(forcats)
+library(ggplot2)
+countscreen <- count(tweets, vars = screen_name)
+countscreen <- arrange(countscreen, desc(n))
+countscreen25 <- dplyr::slice(countscreen, 1:25)
+
+graph1 <- ggplot(countscreen25, aes(x = fct_reorder(vars, n, desc = FALSE), y = n)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  xlab("screen_name")
+```
+
+## Commit 3
+```{r pretty_graph, fig.height=10 , fig.width=10}
+pretty_graph <- ggplot(countscreen25, aes(x = fct_reorder(vars, n, desc = FALSE), y = n)) +
+  geom_bar(stat = "identity", fill="cornflowerblue") +
+  coord_flip() +
+  xlab("Twitter Screen Name")+
+  ylab("Count")+
+ theme_minimal(base_size=15)+
+   ggttile("Most prolific #rstats tweeters")+
+  
+
+
+```
+
+
+
 ## Commit 4
 ```{r}
 library(tidyverse)
