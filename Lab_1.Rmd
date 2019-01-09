@@ -16,3 +16,22 @@ library(rio)
 tweets <- import("data/rstats_tweets.rds")
 
 ```
+
+## Commit 4
+```{r}
+library(tidyverse)
+
+# Create variable for tweets rounded by month and year
+tweets_month <- tweets %>% 
+  mutate(month = lubridate::round_date(created_at, unit = "month")) %>% 
+  filter(month < lubridate::as_datetime("2019-01-01 UTC"))
+
+# Count tweets by month and year
+month_count <- tweets_month %>% 
+  count(month)
+
+# Plot
+ggplot(month_count, aes(x = month, y = n)) +
+  geom_smooth(method = "loess", se = T) +
+  geom_line()
+```
