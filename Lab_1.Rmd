@@ -17,6 +17,23 @@ tweets <- import("data/rstats_tweets.rds")
 
 ```
 
+##Commit 2
+```{r commit2}
+head(tweets)
+library(utf8)
+library(dplyr)
+library(forcats)
+library(ggplot2)
+countscreen <- count(tweets, vars = screen_name)
+countscreen <- arrange(countscreen, desc(n))
+countscreen25 <- dplyr::slice(countscreen, 1:25)
+
+ggplot(countscreen25, aes(x = fct_reorder(vars, n, desc = FALSE), y = n)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  xlab("screen_name")
+```
+
 ## Commit 4
 ```{r}
 library(tidyverse)
@@ -35,3 +52,4 @@ ggplot(month_count, aes(x = month, y = n)) +
   geom_smooth(method = "loess", se = T) +
   geom_line()
 ```
+
