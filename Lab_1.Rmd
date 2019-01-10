@@ -61,7 +61,7 @@ month_count <- tweets_month %>%
 
 # Plot
 ggplot(month_count, aes(x = month, y = n)) +
-  geom_smooth(method = "loess", se = T) +
+  geom_smooth(method = "loess", se = TRUE) +
   geom_line()
 ```
 
