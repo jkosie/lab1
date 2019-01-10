@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Load Data
 ```{r}
 library(rio)
-tweets <- import("data/rstats_tweets.rds")
+tweets <- import("data/rstats_tweets.rds", class = "tbl_df")
 ```
 
 ##Commit 2
