@@ -69,10 +69,10 @@ ggplot(month_count, aes(x = month, y = n)) +
 ```{r, fig.width = 10, fig.height = 10}
 # Pretty plot
 ggplot(month_count, aes(x = month, y = n)) +
-  geom_smooth(color = "magenta", method = "loess", se = FALSE, size = 1.5) +
-  geom_line(color = "gray40", size = 1.5) +
   theme_minimal(base_size = 18) +
   geom_area(alpha = .3, fill = "cornflowerblue") +
+  geom_line(color = "gray40", size = 1.5) +
+  geom_smooth(color = "magenta", method = "loess", se = FALSE, size = 1.5) +
   ggtitle("Growth of the #rstats hashtag on twitter over time") +
-  labs(x = "Year (data summarized by month)", y ="Number of #rstats tweets")
+  labs(x = "Year (data summarized by month)", y ="Number of #rstats tweets", caption = "Data from Mike Kearny, distributed via #tidytuesday")
 ```
